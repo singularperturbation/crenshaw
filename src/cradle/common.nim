@@ -27,14 +27,14 @@ proc Expected*(s:string) =
 
 proc Match*(x: char) =
   if LookAhead == x: LookAhead.GetChar
-  else: Expected("'$#'".format($x))
+  else: Expected "'$#'".format($x)
 
 # Duplicate of strutils
 proc IsAlpha*(c: char): bool = c.toUpper in {'A' .. 'Z'}
 proc IsDigit*(c: char): bool = c in {'0' .. '9'}
 
 proc GetName*(): char =
-  if not LookAhead.IsAlpha: Expected("Name")
+  if not LookAhead.IsAlpha: Expected "Name"
   else:
     result = LookAhead.toUpper
     LookAhead.GetChar
@@ -45,8 +45,8 @@ proc GetNum*(): char =
   LookAhead.GetChar
 
 proc Emit*(s: string) =
-  stdout.write(TabChar)
-  stdout.write(s)
+  stdout.write TabChar
+  stdout.write s
 
 proc EmitLn*(s: string) =
   s.Emit
